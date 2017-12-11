@@ -1,4 +1,4 @@
-package com.hwq.util;
+package com.hwq.util.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;

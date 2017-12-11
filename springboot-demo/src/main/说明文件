@@ -1,0 +1,41 @@
+Intellij IDEA 使用Spring-boot-devTools无效解决办法
+http://blog.csdn.net/a332472810/article/details/52524166
+
+
+本Demo中Servlet、Filter、Listener将用三种形式编写
+
+1、通过util包下的自定义的Servlet、Filter、Listener，然后在启动类中分别注入三个Bean使得项目启动的时候初始化这三个Bean
+分别相当于之前web.xml文件的形式
+
+	@Bean
+	public ServletRegistrationBean servletRegistrationBean() {
+		return new ServletRegistrationBean(new CustomServlet(), "/fox");
+	}
+
+	@Bean
+	public FilterRegistrationBean filterRegistrationBean() {
+		return new FilterRegistrationBean(new CustomFilter(), servletRegistrationBean());
+	}
+
+	@Bean
+	public ServletListenerRegistrationBean<CustomListener> servletListenerRegistrationBean() {
+		return new ServletListenerRegistrationBean<CustomListener>(new CustomListener());
+	}
+
+
+2、通过启动类实现ServletContextInitializer接口直接注册
+implements ServletContextInitializer {
+ @Override
+ public void onStartup(ServletContext servletContext) throws
+ ServletException {
+ servletContext.addServlet("customServlet", new
+ CustomServlet()).addMapping("/roncoo");
+ servletContext.addFilter("customFilter", new
+ CustomFilter())
+ .addMappingForServletNames(EnumSet.of(DispatcherType.REQUES
+ T), true, "customServlet");
+ servletContext.addListener(new CustomListener());
+ }
+
+3、：在 SpringBootApplication 上使用@ServletComponentScan 注解后，直接通过@WebServlet、
+  @WebFilter、@WebListener 在自定义的util包中 注解自动注册
