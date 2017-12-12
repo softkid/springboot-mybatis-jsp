@@ -6,11 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan("com.hwq.dao")
-public class SpringbootDemoApplication  {
+public class SpringbootDemoApplication {
 
 
 	public static void main(String[] args) {

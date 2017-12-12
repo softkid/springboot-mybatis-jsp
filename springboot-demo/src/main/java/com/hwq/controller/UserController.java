@@ -13,6 +13,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping(value = "/user/query")
     @ResponseBody
     public User toselect(){
