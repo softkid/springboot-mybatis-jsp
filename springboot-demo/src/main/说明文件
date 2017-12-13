@@ -37,5 +37,14 @@ implements ServletContextInitializer {
  servletContext.addListener(new CustomListener());
  }
 
-3、：在 SpringBootApplication 上使用@ServletComponentScan 注解后，直接通过@WebServlet、
+3、在 SpringBootApplication 上使用@ServletComponentScan 注解后，直接通过@WebServlet、
   @WebFilter、@WebListener 在自定义的util包中 注解自动注册
+
+加入缓存Cache
+1、在application-dev.properties文件中加入
+spring.cache.type=redis
+#spring.cache.type=ehcache
+spring.cache.ehcache.config=classpath:config/ehcache.xml
+这里的type是为了以后有多个缓存机制的时候选择用的
+ehcache.xml这个文件是Cache的缓存策略
+注意在启动类上加注解@EnableCache缓存才能生效

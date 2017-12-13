@@ -1,6 +1,7 @@
 package com.hwq.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable{
 
@@ -11,6 +12,10 @@ public class User implements Serializable{
     private String address;
 
     private Integer age;
+
+    private Date createTime;
+
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -42,5 +47,21 @@ public class User implements Serializable{
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

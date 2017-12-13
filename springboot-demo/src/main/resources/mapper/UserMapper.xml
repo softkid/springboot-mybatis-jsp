@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hwq.dao.UserMapper" >
-    <resultMap id="BaseResultMap" type="com.hwq.entity.User" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="name" property="name" jdbcType="VARCHAR" />
-        <result column="address" property="address" jdbcType="VARCHAR" />
-        <result column="age" property="age" jdbcType="INTEGER" />
-    </resultMap>
-    <sql id="Base_Column_List" >
-        id, name, address, age
-    </sql>
 
-    <select id="select" resultMap="BaseResultMap">
+    <select id="select" resultType="com.hwq.entity.User">
         SELECT
-        <include refid="Base_Column_List"/>
+        id, name, address, age, create_time, update_time
         FROM USER
     </select>
+
+    <select id="findOne" parameterType="java.lang.Integer" resultType="com.hwq.entity.User">
+        SELECT
+        id, name, address, age, create_time, update_time
+        FROM USER
+        WHERE id = #{id}
+    </select>
+
+    <update id="save">
+        UPDATE USER SET
+        update_time = now(),
+        name = #{name},
+        address = #{address},
+        age = #{age}
+        WHERE id = #{id}
+    </update>
+
 </mapper>
