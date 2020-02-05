@@ -28,10 +28,10 @@ public class SpringbootDemoApplicationTests {
 //		System.out.println(roncooRedisComponent.get("roncoo"));
 //	}
 //
-//	@Test
-//	public void del() {
-//		roncooRedisComponent.del("roncoo");
-//	}
+	@Test
+	public void del() {
+		roncooRedisComponent.del("roncoo");
+	}
 	@Autowired
 	private Producer producer;
 
